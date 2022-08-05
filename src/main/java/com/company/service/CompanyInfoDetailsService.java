@@ -1,7 +1,7 @@
 package com.company.service;
 
 import com.company.dto.CompanyInfoDetails;
-import com.company.entity.CompanyInfo;
+import com.company.entity.Companyinfo;
 import com.company.exception.CompanyNotFoundException;
 import com.company.repository.CompanyInfoRepository;
 import org.modelmapper.ModelMapper;
@@ -27,9 +27,9 @@ public class CompanyInfoDetailsService {
 
     public CompanyInfoDetails getCompanyDetails(String companyCode){
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-        Optional<CompanyInfo> companyOptional = companyInfoRepository.findByCompanyCode(companyCode);
+        Optional<Companyinfo> companyOptional = companyInfoRepository.findByCompanyCode(companyCode);
         if(companyOptional.isPresent()){
-            CompanyInfo companyInfo = companyOptional.get();
+            Companyinfo companyInfo = companyOptional.get();
             CompanyInfoDetails companyInfoDetails = modelMapper.map(companyInfo, CompanyInfoDetails.class);
             return companyInfoDetails;
         }
@@ -50,9 +50,9 @@ public class CompanyInfoDetailsService {
     }
 
     public void addStock(String companyCode, Double stock) {
-        Optional<CompanyInfo> optionalCompany = companyInfoRepository.findByCompanyCode(companyCode);
+        Optional<Companyinfo> optionalCompany = companyInfoRepository.findByCompanyCode(companyCode);
         if(optionalCompany.isPresent()){
-            CompanyInfo company = optionalCompany.get();
+            Companyinfo company = optionalCompany.get();
             company.setStockPrice(stock);
             companyInfoRepository.save(company);
             stockInfoService.sendStockDetails(companyCode,stock);

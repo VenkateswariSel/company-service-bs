@@ -2,7 +2,7 @@ package com.company.controller;
 
 import com.company.dto.CompanyInfoDetails;
 import com.company.dto.Response;
-import com.company.entity.CompanyInfo;
+import com.company.entity.Companyinfo;
 import com.company.service.CompanyInfoDetailsService;
 import com.company.service.CompanyInfoRegistrationService;
 import com.company.service.StockInfoService;
@@ -37,9 +37,9 @@ public class CompanyInfoController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<CompanyInfo> registerCompany(@Validated @RequestBody CompanyInfo company){
+    public ResponseEntity<Companyinfo> registerCompany(@Validated @RequestBody Companyinfo company){
         log.info("Request received for adding new Company");
-        CompanyInfo registeredCompany = companyInfoRegistrationService.registerCompany(company);
+        Companyinfo registeredCompany = companyInfoRegistrationService.registerCompany(company);
         return new ResponseEntity<>(registeredCompany, HttpStatus.CREATED);
     }
 

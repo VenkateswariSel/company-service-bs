@@ -1,6 +1,6 @@
 package com.company.service;
 
-import com.company.entity.CompanyInfo;
+import com.company.entity.Companyinfo;
 import com.company.exception.CompanyAlreadyPresentException;
 import com.company.exception.CompanyNotFoundException;
 import com.company.repository.CompanyInfoRepository;
@@ -22,8 +22,8 @@ public class CompanyInfoRegistrationService {
     @Autowired
     private StockInfoService stockInfoService;
 
-    public CompanyInfo registerCompany(CompanyInfo companyInfo){
-        Optional<CompanyInfo> companyOptional = companyInfoRepository.findByCompanyCode(companyInfo.getCompanyCode());
+    public Companyinfo registerCompany(Companyinfo companyInfo){
+        Optional<Companyinfo> companyOptional = companyInfoRepository.findByCompanyCode(companyInfo.getCompanyCode());
         if(!companyOptional.isPresent()){
             return companyInfoRepository.save(companyInfo);
         }
